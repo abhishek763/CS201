@@ -1,2 +1,2 @@
 # CS201
-Combinatorial game theory
+Introduction to Combinatorial game theory.
