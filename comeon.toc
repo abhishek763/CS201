@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Introduction}{1}{0}{1}
+\beamer@sectionintoc {2}{Few Combinatorial Games}{3}{0}{2}
+\beamer@subsectionintoc {2}{1}{Basic terminologies and Strategies}{3}{0}{2}
+\beamer@subsectionintoc {2}{2}{Tic-Tac-Toe}{6}{0}{2}
+\beamer@subsectionintoc {2}{3}{Hex}{13}{0}{2}
+\beamer@subsectionintoc {2}{4}{Nim}{25}{0}{2}
+\beamer@sectionintoc {3}{Formal Approach to Games}{33}{0}{3}
+\beamer@subsectionintoc {3}{1}{Definitions and Theorems}{33}{0}{3}
+\beamer@subsectionintoc {3}{2}{$\mathbb {G}$ as a partially ordered abelian group}{43}{0}{3}
+\beamer@subsectionintoc {3}{3}{Isomorphism}{66}{0}{3}

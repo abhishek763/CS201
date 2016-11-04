@@ -1,0 +1,447 @@
+\documentclass[12pt]{beamer}
+
+\usetheme{Boadilla}
+
+
+\title{Introduction to Combinatorial Game Theory}
+\author{Abhishek Kumar\\ Manish Kumar Bera}
+\institute{IITK}
+
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{wasysym}
+
+\begin{document}
+\section{Introduction}
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}
+
+\frametitle{Outline}
+
+\tableofcontents
+
+\end{frame}
+
+\section{Few Combinatorial Games}
+
+\subsection{Basic terminologies and Strategies}
+
+\begin{frame}
+
+\frametitle{Introduction}
+
+\begin{definition}
+Combinatorial games are two-player games with no hidden information and no chance elements. We will denote two players by \textit{L} and \textit{R}.
+\end{definition}
+
+\pause
+
+We will implicitly assume that all games are \textit{Short}.
+\pause
+
+\begin{definition}
+For any game position G we denote left options of game by $ \mathbb{g^\textit{l}}$ and right options of game by $ \mathbb{g^\textit{r}}$.\\
+Thus any game position can be written as
+$$G = \left\{\mathbb{g^\textit{l}} | \mathbb{g^\textit{r}} \right\}$$
+\end{definition}
+\end{frame}
+\subsection{Tic-Tac-Toe}
+\begin{frame}
+
+\frametitle{Tic-Tac-Toe}
+
+Tic-Tac-Toe is a game for two players, X and O, who take turns marking the spaces in a 3\text{\sffamily x}3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.
+\pause
+\begin{block}
+\blocktitle{Strategy}
+in this game is to block the opponent's move try to create a double attack position. For the first player the best opening move would be center position as it gives max. opportunities.
+\end{block}
+\pause
+\begin{block}
+\blocktitle{It}
+is very easy to show that if both players play optimally the game always ends in a draw.
+\end{block}
+\pause
+\begin{block}
+\blocktitle{Result}
+can be predicted after two initial moves only(one each player), given both play optimally thereafter.
+\end{block}
+
+\end{frame}
+
+\begin{frame}
+Tic-tac-toe is one of the many games that rely on minmax/maxmin question.
+The idea is to minimize the loss in the worst case scenario or equivalently maximize the score in minimum benefit case.
+\begin{definition}
+$\bar{v} = min \limits_{a_i} max \limits_{a_{-i}}v_i(a_i, a_{-i})$
+\end{definition}
+\pause
+Tic-Tac-toe is a zero sum game.
+\pause
+\begin{block}
+\blocktitle{There}
+is also a misere version in which one forces the opponent to place three cuts. And there are many variations of the game.
+\end{block}
+
+\end{frame}
+
+\subsection{Hex}
+
+\begin{frame}
+
+\frametitle{Hex}
+Hex is a strategy board game played on a hexagonal $n \text{\sffamily x} n$ grid.\\
+One player tries to make a path from top to bottom and other from left to right.
+\begin{figure}
+  \includegraphics[scale=0.7]{hex.jpg}
+  \caption{hex board.}
+  \label{fig:hex}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+Hex can never end in draw.
+\end{theorem}
+\pause
+\begin{definition}
+A (class of) game(s) is determined if for all instances of the game there is a winning strategy for one of the players (not necessarily the same player for each instance).
+\end{definition}
+\pause
+\begin{block}
+\blocktitle{CLAIM}
+ : HEX is a determined game.
+\end{block}
+\pause
+\begin{proof}
+If the second player has a winning strategy, the first player could "steal" it by making an irrelevant move, and then follow the second player's strategy. If the strategy ever called for moving on the square already chosen, the first player can then make another arbitrary move. This ensures a first player win. Clearly such a strategy cannot exist.
+\end{proof}
+
+\end{frame}
+
+\begin{frame}
+There are many important points one should keep in mind while playing HEX :
+\begin{itemize}
+\pause
+\item Prefer two-bridge instead of one.
+\pause
+\item Don't block too close to opponent's chain.
+\pause
+\item Your chain is as strong as its weakest link.
+\pause
+\item Control the center of the board.
+\pause
+\item Since first player has advantage, few versions allow second player to swap with first player after first move.
+\pause
+\item So choosing first move becomes tricky !
+\end{itemize}
+\end{frame}
+
+\subsection{Nim}
+
+\begin{frame}
+
+\frametitle{NIM}
+\begin{definition}
+Nim is strategical game in which there are heaps of coins. Players can take away any number of coins from a particular heap. Player with no legal move looses.
+\end{definition}
+
+\pause
+There is also a misere version in which player to take last coin looses.
+\pause
+
+\begin{block}
+\blocktitle{Both}
+versions are "determined".
+\end{block}
+
+\pause
+\begin{definition}
+Nim Sum : $a \oplus b$ = first write a and b in binary then add without carrying.
+\end{definition}
+
+\pause
+If nim sum of no. of coins in all the heaps is zero then G is called zero position.
+
+\end{frame}
+
+\begin{frame}
+
+\begin{theorem}
+\textbf{Bouton's theorem:}If G is a zero position, then every move from G leads to a nonzero
+position. If G is not a zero position, then there exists a move from G to a zero
+position.
+\end{theorem}
+
+\pause
+
+Courtesy this theorem we have well defined outcome for every nim position. Also this theorem provides a winning strategy.
+\pause
+
+\begin{itemize}
+\item We know that finally we'll have 0 coins left which is a zero nim sum position.
+\item Hence if we start from a zero nim sum position second player will loose and vice-versa.
+\end{itemize}
+
+\end{frame}
+
+\section{Formal Approach to Games}
+
+\subsection{Definitions and Theorems}
+
+\begin{frame}
+
+\frametitle{Fundamental theorem of combinatorial Games}
+
+\begin{definition}
+Let $\mathbb{G}$ be a short combinatorial game, and assume normal play. Either Left can force a win playing first on $\mathbb{G}$ or else Right can force a win playing second, but not both.
+\end{definition}
+
+\pause
+
+\begin{itemize}
+\item The theorem has an obvious dual, in which "Left"
+and "Right" are interchanged.
+\pause
+\item No explicit base case.
+\pause
+\item The Fundamental Theorem shows that every short game belongs to one of the four normal-play outcome classes $\mathcal{ N, P, L, R}$.
+\pause
+\item We denote by o($\mathbb{G}$) the outcome class of $\mathbb{G}$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+The outcome class of a game, G, can be determined from the
+outcome classes of its options as shown in the following table:
+\pause
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+\hline
+ & some $\mathbb{G^\mathcal{R}} \in \mathcal{R} \cup \mathcal{P}$ & all $\mathbb{G^\mathcal{R}} \in \mathcal{L} \cup \mathbcal{N}$ \\ 
+\hline
+some $\mathbb{G^\mathcal{L}} \in \mathcal{L} \cup \mathcal{P}$ & $\mathcal{N}$ & $\mathcal{N}$ \\
+\hline 
+all $\mathbb{G^\mathcal{L}} \in \mathcal{R} \cup \mathcal{N}$ & $\mathcal{R}$ & $\mathcal{P}$ \\ 
+\hline
+\end{tabular}
+\end{center}
+\pause
+\begin{definition}
+A game is impartial if both players have the same options from any position. Else it is called Partisan game.
+\end{definition}
+\pause
+\begin{theorem}
+If $\mathbb{G}$ is an impartial game then $\mathbb{G}$ is in either $\mathcal{N}$ or $\mathcal{P}$.
+\end{theorem}
+
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+Suppose the positions of a finite impartial game can be parti-tioned into mutually exclusive sets A and B with the properties:
+\begin{itemize}
+\item every option of a position in A is in B
+\item every position in B has at least one option in A.
+\end{itemize}
+Then A is the set of $\mathcal{P}$ positions and B is the set of $\mathcal{N}$ positions.
+\end{theorem}
+
+\end{frame}
+
+
+\subsection{$\mathbb{G}$ as a partially ordered abelian group}
+\begin{frame}
+\begin{definition}
+$ \mathbb{G+H} :=
+\{\mathbb{G} + {h^\textit{L}},\mathbb{H} + {g^\textit{L}} | \mathbb{G} + {h^\textit{R}},\mathbb{H}+{g^\textit{R}}\}$\break
+The comma is intended to mean set union.
+\end{definition}
+
+\pause
+ \begin{theorem}
+ \begin{enumerate}
+     \item $\mathbb{G}+0=\mathbb{G}$
+     \item $\mathbb{G+H = H+G}$
+     \item $\mathbb{(G+H)+J = G+(H+J)}$
+ \end{enumerate}
+
+ \end{theorem}
+\pause
+ \begin{definition}
+ $\mathbb{-G ::= \{{-g^\textit{R}}|{-g^\textit{L}}\} }$\break
+ The definition of negative corresponds exactly to reversing the roles of
+the two players.
+ \end{definition}
+\end{frame}
+
+\begin{frame}
+
+\begin{definition}
+$\mathbb{G-H ::= G + (-H) }$
+\end{definition}
+\pause
+\begin{lemma}
+\begin{enumerate}
+     \item $\mathbb{-(-G) = G}$
+     \item $\mathbb{-(G+H) = (-G) + (-H)}$
+\end{enumerate}
+\end{lemma}
+
+\pause
+\begin{definition}
+ $\mathbb{G=H}$ if $(\forall \mathbb{X}) \mathbb{G+X} $ has the same
+outcome class as $\mathbb{H+X}$\break
+ In essence, $\mathbb{G}$ acts as $\mathbb{H}$ in any sum of games.
+ \end{definition}
+\pause
+\begin{lemma}
+ $=$ is an equivalence relation.
+\end{lemma}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+ $\mathbb{G} = 0$ iff $\mathbb{G}$ is a $\mathcal{P}$-position.(i.e., $\mathbb{G}$ is win
+for second player)
+\end{theorem}
+\pause
+ \begin{corollary}
+ $\mathbb{G-G} = 0$
+ \end{corollary}
+\pause
+ \begin{theorem}
+  Fix games $\mathbb{G,H,J}\break$\break
+  $\mathbb{G=H}$ iff $\mathbb{G+J=H+J}$
+ \end{theorem}
+\pause
+ \begin{corollary}
+ $\mathbb{G=H} iff \mathbb{G-H}=0$\break
+ \end{corollary}
+\end{frame}
+
+\begin{frame}
+
+\begin{definition}
+$\mathbb{G \geq H}$ if $\mathbb{(\forall X)}$ Left wins $\mathbb{G+X}$
+whenever Left wins $\mathbb{H+X}$\break
+$\mathbb{G \leq H}$ if $\mathbb{(\forall X)}$ Right wins $\mathbb{G+X}$
+whenever Right wins $\mathbb{H+X}$
+\end{definition}
+\pause
+\begin{lemma}
+ \begin{enumerate}
+     \item $\mathbb{G \geq H}$ iff $\mathbb{H \leq G}$
+     \item $\mathbb{G \geq H}$ and $\mathbb{G \leq H}$ iff $\mathbb{G=H}$
+ \end{enumerate}
+\end{lemma}
+\pause
+\begin{theorem}
+Let $\mathbb{G}$ be any game and let $\mathbb{Z} \in \mathcal{P}$ be any game that is a second player win. Then outcome classes of $\mathbb{G}$ and $\mathbb{G+Z}$ are the same.
+\end{theorem}
+\end{frame}
+
+\begin{frame}
+
+\begin{theorem}
+The following are equivalent:
+\begin{itemize}
+\item $\mathbb{G} \geq 0$.
+\pause
+\item Left wins moving second in $ \mathbb{G} $.
+\pause
+\item $\forall$ games $ \mathbb{X} $ if left wins moving second/first in $ \mathbb{X} $ then left wins moving second/first on $ \mathbb{G + X} $.
+\end{itemize}
+\end{theorem}
+\pause
+\begin{theorem}
+$\mathbb{G} \geq \mathbb{H}$ iff $\mathbb{G+J} \geq \mathbb{H+J}$
+\end{theorem}
+\pause
+\begin{theorem}
+$\mathbb{G} \geq \mathbb{H}$ iff left wins moving second on $\mathbb{G-H}$
+\end{theorem}
+\pause
+These results give us an insight on how to actually compare games $\mathbb{G}$ and $\mathbb{H}$
+\begin{itemize}
+\item $\mathbb{G > H}$ when \mathcal{L} wins $\mathbb{G-H}$
+\item $\mathbb{G = H}$ when \mathcal{P} wins $\mathbb{G-H}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+\item $\mathbb{G < H}$ when \mathcal{R} wins $\mathbb{G-H}$
+\item $\mathbb{G || H}$ when \mathcal{N} wins $\mathbb{G-H}$
+\end{itemize}
+
+$||$ means that both games are incomparable.
+\pause
+\begin{theorem}
+The relation $\geq$ is a partial order on games.
+\begin{itemize}
+\item Transitive : $\mathbb{G \geq H} \, and \, \mathbb{H \geq J} \, then \, \mathbb{G \geq J}$
+\item Reflexive : $\mathbb{G \geq G}$
+\item AntiSymmetry : $\mathbb{G \geq H}\, and\, \mathbb{H \geq G} \, then \, \mathbb{G = H} $
+\end{itemize}
+\end{theorem}
+\pause
+\begin{theorem}
+The group containing all games form a partially ordered abelian group under +
+\end{theorem}
+\end{frame}
+
+\subsection{Isomorphism}
+
+\begin{frame}
+\begin{definition}
+Every game $\mathbb{G}$ has a unique "smallest" game which is equal to it. This game is called $\mathbb{G}$'s \textit{canonical form}.
+\end{definition}
+\pause
+\begin{theorem}
+If $$\mathbb{G}=\{\mathbb{A,B,C,...|H,I,J,...}\}$$ and $\mathbb{B \geq A}$
+then $\mathbb{G=G'}$ where
+$$\mathbb{G'=}\{\mathbb{B,C,...|H,I,J,...}\}$$\break
+Here option $\mathbb{A}$ is said to be dominated by option $\mathbb{B}$
+for Left.
+\end{theorem}
+\pause
+\begin{definition}
+A Left option $\mathbb{A}$ of $\mathbb{G}$ can be considered to be
+reversible if $\mathbb{A}$ has a right option $\mathbb{A^\textit{R}}$ such
+that $\mathbb{A^\textit{R}} \leq \mathbb{G}$
+\end{definition}
+\end{frame}
+
+\begin{frame}
+\begin{theorem}
+Fix a game$$\mathbb{G}=\{\mathbb{A,B,C,....|H,I,J,....}\}$$ and suppose
+for some Right option of $\mathbb{A}$, call it $\mathbb{A^\textit{R}}$,
+$\mathbb{G} \geq \mathbb{A^\textit{R}}$. If we denote Left options of
+$\mathbb{A^\textit{R}}$ by
+$\{\mathbb{W,X,Y,...}\}$:$$\mathbb{A^\textit{R}}=\{W,X,Y,...|...\}$$ and
+define the new game $$\mathbb{G'=}\{W,X,Y,...,B,C,...|H,I,J,...\}$$ then
+$\mathbb{G=G' }$
+\end{theorem}
+\pause
+\smiley
+\smiley
+\smiley
+\smiley
+Finally we have our result.
+\smiley
+\smiley
+\smiley
+\smiley
+\begin{theorem}
+If $\mathbb{G}$ and $\mathbb{H}$ are in canonical form and  $\mathbb{G = H}$ , then $\mathbb{G \cong H}$(Isomorphic Games).
+\end{theorem}
+\end{frame}
+
+\end{document}
